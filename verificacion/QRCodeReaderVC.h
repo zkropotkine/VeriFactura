@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewPreview;
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *bbitemStart;
+@property(nonatomic, strong)NSMutableData *webResponseData;
 
 - (IBAction)startStopReading:(id)sender;
 
