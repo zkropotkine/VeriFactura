@@ -164,6 +164,16 @@
             // Everything is done on the main thread.
             [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             
+            NSString *myString = [metadataObj stringValue];
+            
+            NSArray *myWords = [myString componentsSeparatedByCharactersInSet:
+                                [NSCharacterSet characterSetWithCharactersInString:@"=&"]
+                                ];
+            
+            NSLog(@"The content of array is: %@", myString);
+            NSLog(@"The content of array is%@", myWords);
+            
+            
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
             
