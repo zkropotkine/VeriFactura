@@ -20,6 +20,17 @@
 @end
 
 @implementation QRCodeReaderVC
+NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+"<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://tempuri.org/\">"
+"<SOAP-ENV:Body>"
+"<ns1:Consulta>"
+"<ns1:expresionImpresa>"
+"<![CDATA[?re=BEN9501023I0&rr=SARM8209281F1&tt=440.000000&id=EC609EC1-5F63-4333-A2B8-2EDC10B68075]]>"
+"</ns1:expresionImpresa>"
+"</ns1:Consulta>"
+"</SOAP-ENV:Body>"
+"</SOAP-ENV:Envelope>";
+
 
 - (void)viewDidLoad
 {
@@ -152,7 +163,7 @@
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate method implementation
 
--(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
     
     // Check if the metadataObjects array is not nil and it contains at least one object.
     if (metadataObjects != nil && [metadataObjects count] > 0) {
@@ -174,6 +185,29 @@
             NSLog(@"The content of array is%@", myWords);
             
             
+            NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
+            NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+            
+            NSLog(@"String: %@", sSOAPMessage);
+            
+            NSString *sMessageLength = [NSString stringWithFormat:@"%lu", (unsigned long)[sSOAPMessage length]];
+            
+            [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
+            [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+            [myRequest setHTTPMethod:@"POST"];
+            [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+            
+            if( theConnection ) {
+                self.webResponseData = [NSMutableData data];
+            }else {
+                NSLog(@"Some error occurred in Connection");
+                
+            }
+            
+            
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
             
@@ -185,6 +219,24 @@
             }
         }
     }
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    [self.webResponseData  setLength:0];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    [self.webResponseData  appendData:data];
+}
+
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"Some error in your Connection. Please try again.");
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSLog(@"Received Bytes from server: %lu", [self.webResponseData length]);
+    NSString *myXMLResponse = [[NSString alloc] initWithBytes: [self.webResponseData bytes] length:[self.webResponseData length] encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",myXMLResponse);
 }
 
 
