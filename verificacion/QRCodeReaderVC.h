@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-@interface QRCodeReaderVC : UIViewController <AVCaptureMetadataOutputObjectsDelegate>
+@interface QRCodeReaderVC : UIViewController <AVCaptureMetadataOutputObjectsDelegate, NSXMLParserDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *viewPreview;
 @property (weak, nonatomic) IBOutlet UILabel *lblStatus;

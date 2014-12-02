@@ -7,6 +7,7 @@
 //
 
 #import "QRCodeReaderVC.h"
+#define CFDI_ELEMENTS_NUMBERS 4
 
 @interface QRCodeReaderVC ()
 @property (nonatomic, strong) AVCaptureSession *captureSession;
@@ -20,22 +21,26 @@
 @end
 
 @implementation QRCodeReaderVC
-NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-"<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://tempuri.org/\">"
-"<SOAP-ENV:Body>"
-"<ns1:Consulta>"
-"<ns1:expresionImpresa>"
-"<![CDATA[?re=BEN9501023I0&rr=SARM8209281F1&tt=440.000000&id=EC609EC1-5F63-4333-A2B8-2EDC10B68075]]>"
-"</ns1:expresionImpresa>"
-"</ns1:Consulta>"
-"</SOAP-ENV:Body>"
-"</SOAP-ENV:Envelope>";
+   NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                            "<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://tempuri.org/\">"
+                              "<SOAP-ENV:Body>"
+                                "<ns1:Consulta>"
+                                  "<ns1:expresionImpresa>"
+                                    "<![CDATA[%RE&%RR&%TT&%ID]]>"
+                                  "</ns1:expresionImpresa>"
+                                "</ns1:Consulta>"
+                              "</SOAP-ENV:Body>"
+                            "</SOAP-ENV:Envelope>";
 
+  NSMutableArray *cfdiData;
+  bool validCDFI = true;
+  NSMutableString *resultValue;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    cfdiData = [[NSMutableArray alloc] initWithCapacity:CFDI_ELEMENTS_NUMBERS];
     
     // Initially make the captureSession object nil.
     _captureSession = nil;
@@ -64,21 +69,20 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
         if ([self startReading]) {
             // If the startReading methods returns YES and the capture session is successfully
             // running, then change the start button title and the status message.
-            [_bbitemStart setTitle:@"Stop"];
-            [_lblStatus setText:@"Scanning for QR Code..."];
+            [_bbitemStart setTitle:@"Parar"];
+            [self.lblStatus setText:@"Escaneando CFDI"];
+             self.lblStatus.textColor = [UIColor blueColor];
         }
     }
     else{
         // In this case the app is currently reading a QR code and it should stop doing so.
         [self stopReading];
         // The bar button item's title should change again.
-        [_bbitemStart setTitle:@"Start!"];
+        [_bbitemStart setTitle:@"Verificar!"];
     }
     
     // Set to the flag the exact opposite value of the one that currently has.
     _isReading = !_isReading;
-    
-    NSLog(@"Llamado");
 }
 
 
@@ -137,6 +141,46 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
     
     // Remove the video preview layer from the viewPreview view's layer.
     [_videoPreviewLayer removeFromSuperlayer];
+    
+    
+    if (validCDFI)
+    {
+        NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
+        NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
+        
+        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
+        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
+        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
+        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
+        
+        
+        NSLog(@"String: %@", sSOAPMessage);
+        
+        NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
+        
+        [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
+        [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+        [myRequest setHTTPMethod:@"POST"];
+        [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+        
+        if( theConnection ) {
+            self.webResponseData = [NSMutableData data];
+
+            
+            //[_lblStatus setText:@"Factura Valida"];
+        }else {
+            NSLog(@"Some error occurred in Connection");
+            [self.lblStatus setText:@"Tenemos problemas validando esta factura, por favor intenta más tarde."];
+            self.lblStatus.textColor = [UIColor redColor];
+        }
+    } else {
+        NSLog(@"Some error occurred in Connection");
+        [self.lblStatus setText:@"Esto no parece ser una factura."];
+        self.lblStatus.textColor = [UIColor redColor];
+    }
 }
 
 
@@ -173,43 +217,39 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             // If the found metadata is equal to the QR code metadata then update the status label's text,
             // stop reading and change the bar button item's title and the flag's value.
             // Everything is done on the main thread.
-            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
+            //[_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:[metadataObj stringValue] waitUntilDone:NO];
             
             NSString *myString = [metadataObj stringValue];
             
             NSArray *myWords = [myString componentsSeparatedByCharactersInSet:
-                                [NSCharacterSet characterSetWithCharactersInString:@"=&"]
+                                [NSCharacterSet characterSetWithCharactersInString:@"&"]
                                 ];
             
-            NSLog(@"The content of array is: %@", myString);
-            NSLog(@"The content of array is%@", myWords);
+           // NSLog(@"The content of array is: %@", myString);
+            //NSLog(@"The content of array is%@", myWords);
             
+            NSArray *cfdiElements = [NSArray arrayWithObjects:@"?re=",@"rr=",@"tt=", @"id=",nil];
             
-            NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
-            NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-            
-            NSLog(@"String: %@", sSOAPMessage);
-            
-            NSString *sMessageLength = [NSString stringWithFormat:@"%lu", (unsigned long)[sSOAPMessage length]];
-            
-            [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-            [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
-            [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
-            [myRequest setHTTPMethod:@"POST"];
-            [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
-            
-            if( theConnection ) {
-                self.webResponseData = [NSMutableData data];
-            }else {
-                NSLog(@"Some error occurred in Connection");
+            int i = 0;
+            validCDFI = true;
+            for (id cfdiElement in cfdiElements)
+            {
+                id myWord = [myWords objectAtIndex:i];
                 
+                if ([myWord hasPrefix:cfdiElement]) {
+                    validCDFI = validCDFI & true;
+                    
+                    [cfdiData addObject:myWord];
+                } else {
+                    validCDFI = validCDFI & false;
+                    break;
+                }
+                
+                i++;
             }
             
-            
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
-            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Start!" waitUntilDone:NO];
+            [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Verificar!" waitUntilDone:NO];
             
             _isReading = NO;
             
@@ -234,9 +274,49 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSLog(@"Received Bytes from server: %lu", [self.webResponseData length]);
+    NSLog(@"Received Bytes from server: %d", [self.webResponseData length]);
     NSString *myXMLResponse = [[NSString alloc] initWithBytes: [self.webResponseData bytes] length:[self.webResponseData length] encoding:NSUTF8StringEncoding];
     NSLog(@"%@",myXMLResponse);
+    
+    NSData *data = [myXMLResponse dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSXMLParser *xmlstr = [[NSXMLParser alloc] initWithData:data] ;
+    xmlstr.delegate = self;
+    [xmlstr parse];
+}
+
+/*
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI  qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
+    //NSLog(@"ENCONTRO E, %@",elementName );
+    //NSLog(@"ENCONTRO X, %@",attributeDict );
+}*/
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
+    //if(resultValue == nil)
+        
+        resultValue = [[NSMutableString
+                    alloc] init];
+    
+    [resultValue appendString:string];
+     //NSLog(@"ENCONTRO I, %@", string);
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
+    
+    
+    NSLog(@"Found an element named: %@ with a value of: %@", elementName, resultValue);
+     //NSLog(@"ENCONTRO <E, %@",elementName);
+    
+    if ([elementName isEqualToString:@"a:CodigoEstatus"]){
+        //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
+    } else if ([elementName isEqualToString:@"a:Estado"]){
+        //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
+        // [_lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
+        
+        [self.lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
+        self.lblStatus.textColor = [UIColor greenColor];
+    }
+    
 }
 
 
