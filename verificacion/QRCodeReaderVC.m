@@ -177,7 +177,7 @@
             self.lblStatus.textColor = [UIColor redColor];
         }
     } else {
-        NSLog(@"Some error occurred in Connection");
+        NSLog(@"This doesn't seems to be a bill");
         [self.lblStatus setText:@"Esto no parece ser una factura."];
         self.lblStatus.textColor = [UIColor redColor];
     }
