@@ -114,7 +114,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startStopReading:" destination="jkv-kf-ano" eventType="touchUpInside" id="0I4-61-gvw"/>
                                     <segue destination="vXZ-lx-hvc" kind="modal" modalTransitionStyle="crossDissolve" id="8EA-LR-RnP"/>
                                 </connections>
                             </button>
