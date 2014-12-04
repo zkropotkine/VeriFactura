@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-               BuildableName = "verificacion.app"
-               BlueprintName = "verificacion"
-               ReferencedContainer = "container:verificacion.xcodeproj">
+               BuildableName = "VeriFactura.app"
+               BlueprintName = "VeriFactura"
+               ReferencedContainer = "container:VeriFactura.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA13443B1A26EE2B00729BD2"
-               BuildableName = "verificacionTests.xctest"
-               BlueprintName = "verificacionTests"
-               ReferencedContainer = "container:verificacion.xcodeproj">
+               BuildableName = "VerificaFacturaTests.xctest"
+               BlueprintName = "VerificaFacturaTests"
+               ReferencedContainer = "container:VeriFactura.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DAE827EC1A2F083D009F16A5"
+               BuildableName = "VeriFactura Tests.xctest"
+               BlueprintName = "VeriFactura Tests"
+               ReferencedContainer = "container:VeriFactura.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +61,19 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA13443B1A26EE2B00729BD2"
-               BuildableName = "verificacionTests.xctest"
-               BlueprintName = "verificacionTests"
-               ReferencedContainer = "container:verificacion.xcodeproj">
+               BuildableName = "VerificaFacturaTests.xctest"
+               BlueprintName = "VerificaFacturaTests"
+               ReferencedContainer = "container:VeriFactura.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DAE827EC1A2F083D009F16A5"
+               BuildableName = "VeriFactura Tests.xctest"
+               BlueprintName = "VeriFactura Tests"
+               ReferencedContainer = "container:VeriFactura.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "verificacion.app"
-            BlueprintName = "verificacion"
-            ReferencedContainer = "container:verificacion.xcodeproj">
+            BuildableName = "VeriFactura.app"
+            BlueprintName = "VeriFactura"
+            ReferencedContainer = "container:VeriFactura.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +100,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "verificacion.app"
-            BlueprintName = "verificacion"
-            ReferencedContainer = "container:verificacion.xcodeproj">
+            BuildableName = "VeriFactura.app"
+            BlueprintName = "VeriFactura"
+            ReferencedContainer = "container:VeriFactura.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +118,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "verificacion.app"
-            BlueprintName = "verificacion"
-            ReferencedContainer = "container:verificacion.xcodeproj">
+            BuildableName = "VeriFactura.app"
+            BlueprintName = "VeriFactura"
+            ReferencedContainer = "container:VeriFactura.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

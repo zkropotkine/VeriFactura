@@ -1,19 +1,19 @@
 //
-//  verificacionTests.m
-//  verificacionTests
+//  VeriFactura_Tests.m
+//  VeriFactura Tests
 //
-//  Created by Daniel Rodriguez on 11/26/14.
+//  Created by Daniel Rodriguez on 12/3/14.
 //  Copyright (c) 2014 Daniel Rodriguez. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface verificacionTests : XCTestCase
+@interface VeriFactura_Tests : XCTestCase
 
 @end
 
-@implementation verificacionTests
+@implementation VeriFactura_Tests
 
 - (void)setUp {
     [super setUp];

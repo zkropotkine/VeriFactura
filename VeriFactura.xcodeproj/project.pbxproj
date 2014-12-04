@@ -13,26 +13,27 @@
 		DA1344321A26EE2B00729BD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA1344301A26EE2B00729BD2 /* Main.storyboard */; };
 		DA1344341A26EE2B00729BD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA1344331A26EE2B00729BD2 /* Images.xcassets */; };
 		DA1344371A26EE2B00729BD2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA1344351A26EE2B00729BD2 /* LaunchScreen.xib */; };
-		DA1344431A26EE2B00729BD2 /* verificacionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1344421A26EE2B00729BD2 /* verificacionTests.m */; };
 		DA13444F1A280B6E00729BD2 /* QRCodeReaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DA13444E1A280B6E00729BD2 /* QRCodeReaderVC.m */; };
 		DA1344511A280BA500729BD2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344501A280BA500729BD2 /* Foundation.framework */; };
 		DA1344531A280BAD00729BD2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344521A280BAD00729BD2 /* CoreGraphics.framework */; };
 		DA1344551A280BB600729BD2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344541A280BB600729BD2 /* UIKit.framework */; };
 		DA1344581A280C5800729BD2 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA1344571A280C5800729BD2 /* beep.mp3 */; };
+		DAC22ACD1A30305B0050CD44 /* invoice_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22ACC1A30305B0050CD44 /* invoice_btn.png */; };
+		DAE827F21A2F083D009F16A5 /* VeriFactura_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DA13443D1A26EE2B00729BD2 /* PBXContainerItemProxy */ = {
+		DAE827F31A2F083D009F16A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA13441B1A26EE2B00729BD2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA1344221A26EE2B00729BD2;
-			remoteInfo = verificacion;
+			remoteInfo = VeriFactura;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA1344231A26EE2B00729BD2 /* verificacion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = verificacion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1344231A26EE2B00729BD2 /* VeriFactura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeriFactura.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1344271A26EE2B00729BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA1344281A26EE2B00729BD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA13442A1A26EE2B00729BD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -42,15 +43,16 @@
 		DA1344311A26EE2B00729BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DA1344331A26EE2B00729BD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DA1344361A26EE2B00729BD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		DA13443C1A26EE2B00729BD2 /* verificacionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = verificacionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA1344411A26EE2B00729BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA1344421A26EE2B00729BD2 /* verificacionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = verificacionTests.m; sourceTree = "<group>"; };
 		DA13444D1A280B6E00729BD2 /* QRCodeReaderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeReaderVC.h; sourceTree = "<group>"; };
 		DA13444E1A280B6E00729BD2 /* QRCodeReaderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeReaderVC.m; sourceTree = "<group>"; };
 		DA1344501A280BA500729BD2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DA1344521A280BAD00729BD2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA1344541A280BB600729BD2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA1344571A280C5800729BD2 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		DAC22ACC1A30305B0050CD44 /* invoice_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invoice_btn.png; sourceTree = "<group>"; };
+		DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeriFactura Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAE827F01A2F083D009F16A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeriFactura_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +66,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA1344391A26EE2B00729BD2 /* Frameworks */ = {
+		DAE827EA1A2F083D009F16A5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -78,8 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				DA1344251A26EE2B00729BD2 /* verificacion */,
+				DAE827EE1A2F083D009F16A5 /* VeriFactura Tests */,
 				DA1344561A280BC100729BD2 /* Frameworks */,
-				DA13443F1A26EE2B00729BD2 /* verificacionTests */,
 				DA1344241A26EE2B00729BD2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,8 +89,8 @@
 		DA1344241A26EE2B00729BD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA1344231A26EE2B00729BD2 /* verificacion.app */,
-				DA13443C1A26EE2B00729BD2 /* verificacionTests.xctest */,
+				DA1344231A26EE2B00729BD2 /* VeriFactura.app */,
+				DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,25 +115,9 @@
 		DA1344261A26EE2B00729BD2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAC22ACC1A30305B0050CD44 /* invoice_btn.png */,
 				DA1344271A26EE2B00729BD2 /* Info.plist */,
 				DA1344281A26EE2B00729BD2 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		DA13443F1A26EE2B00729BD2 /* verificacionTests */ = {
-			isa = PBXGroup;
-			children = (
-				DA1344421A26EE2B00729BD2 /* verificacionTests.m */,
-				DA1344401A26EE2B00729BD2 /* Supporting Files */,
-			);
-			path = verificacionTests;
-			sourceTree = "<group>";
-		};
-		DA1344401A26EE2B00729BD2 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				DA1344411A26EE2B00729BD2 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -155,12 +141,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DAE827EE1A2F083D009F16A5 /* VeriFactura Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */,
+				DAE827EF1A2F083D009F16A5 /* Supporting Files */,
+			);
+			path = "VeriFactura Tests";
+			sourceTree = "<group>";
+		};
+		DAE827EF1A2F083D009F16A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DAE827F01A2F083D009F16A5 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DA1344221A26EE2B00729BD2 /* verificacion */ = {
+		DA1344221A26EE2B00729BD2 /* VeriFactura */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "verificacion" */;
+			buildConfigurationList = DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFactura" */;
 			buildPhases = (
 				DA13441F1A26EE2B00729BD2 /* Sources */,
 				DA1344201A26EE2B00729BD2 /* Frameworks */,
@@ -170,27 +173,27 @@
 			);
 			dependencies = (
 			);
-			name = verificacion;
+			name = VeriFactura;
 			productName = verificacion;
-			productReference = DA1344231A26EE2B00729BD2 /* verificacion.app */;
+			productReference = DA1344231A26EE2B00729BD2 /* VeriFactura.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DA13443B1A26EE2B00729BD2 /* verificacionTests */ = {
+		DAE827EC1A2F083D009F16A5 /* VeriFactura Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA1344491A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "verificacionTests" */;
+			buildConfigurationList = DAE827F51A2F083D009F16A5 /* Build configuration list for PBXNativeTarget "VeriFactura Tests" */;
 			buildPhases = (
-				DA1344381A26EE2B00729BD2 /* Sources */,
-				DA1344391A26EE2B00729BD2 /* Frameworks */,
-				DA13443A1A26EE2B00729BD2 /* Resources */,
+				DAE827E91A2F083D009F16A5 /* Sources */,
+				DAE827EA1A2F083D009F16A5 /* Frameworks */,
+				DAE827EB1A2F083D009F16A5 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DA13443E1A26EE2B00729BD2 /* PBXTargetDependency */,
+				DAE827F41A2F083D009F16A5 /* PBXTargetDependency */,
 			);
-			name = verificacionTests;
-			productName = verificacionTests;
-			productReference = DA13443C1A26EE2B00729BD2 /* verificacionTests.xctest */;
+			name = "VeriFactura Tests";
+			productName = "VeriFactura Tests";
+			productReference = DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -206,13 +209,13 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = QXF33N93KH;
 					};
-					DA13443B1A26EE2B00729BD2 = {
+					DAE827EC1A2F083D009F16A5 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = DA1344221A26EE2B00729BD2;
 					};
 				};
 			};
-			buildConfigurationList = DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "verificacion" */;
+			buildConfigurationList = DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFactura" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -225,8 +228,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA1344221A26EE2B00729BD2 /* verificacion */,
-				DA13443B1A26EE2B00729BD2 /* verificacionTests */,
+				DA1344221A26EE2B00729BD2 /* VeriFactura */,
+				DAE827EC1A2F083D009F16A5 /* VeriFactura Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,13 +240,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1344321A26EE2B00729BD2 /* Main.storyboard in Resources */,
+				DAC22ACD1A30305B0050CD44 /* invoice_btn.png in Resources */,
 				DA1344371A26EE2B00729BD2 /* LaunchScreen.xib in Resources */,
 				DA1344581A280C5800729BD2 /* beep.mp3 in Resources */,
 				DA1344341A26EE2B00729BD2 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA13443A1A26EE2B00729BD2 /* Resources */ = {
+		DAE827EB1A2F083D009F16A5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,21 +268,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DA1344381A26EE2B00729BD2 /* Sources */ = {
+		DAE827E91A2F083D009F16A5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA1344431A26EE2B00729BD2 /* verificacionTests.m in Sources */,
+				DAE827F21A2F083D009F16A5 /* VeriFactura_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DA13443E1A26EE2B00729BD2 /* PBXTargetDependency */ = {
+		DAE827F41A2F083D009F16A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA1344221A26EE2B00729BD2 /* verificacion */;
-			targetProxy = DA13443D1A26EE2B00729BD2 /* PBXContainerItemProxy */;
+			target = DA1344221A26EE2B00729BD2 /* VeriFactura */;
+			targetProxy = DAE827F31A2F083D009F16A5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -386,7 +390,7 @@
 				INFOPLIST_FILE = verificacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VeriFactura;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -399,12 +403,12 @@
 				INFOPLIST_FILE = verificacion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = VeriFactura;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
-		DA13444A1A26EE2B00729BD2 /* Debug */ = {
+		DAE827F61A2F083D009F16A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -416,14 +420,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = verificacionTests/Info.plist;
+				INFOPLIST_FILE = "VeriFactura Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/verificacion.app/verificacion";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFactura.app/VeriFactura";
 			};
 			name = Debug;
 		};
-		DA13444B1A26EE2B00729BD2 /* Release */ = {
+		DAE827F71A2F083D009F16A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -431,17 +435,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = verificacionTests/Info.plist;
+				INFOPLIST_FILE = "VeriFactura Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/verificacion.app/verificacion";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFactura.app/VeriFactura";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "verificacion" */ = {
+		DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFactura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA1344441A26EE2B00729BD2 /* Debug */,
@@ -450,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "verificacion" */ = {
+		DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFactura" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA1344471A26EE2B00729BD2 /* Debug */,
@@ -459,11 +463,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA1344491A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "verificacionTests" */ = {
+		DAE827F51A2F083D009F16A5 /* Build configuration list for PBXNativeTarget "VeriFactura Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DA13444A1A26EE2B00729BD2 /* Debug */,
-				DA13444B1A26EE2B00729BD2 /* Release */,
+				DAE827F61A2F083D009F16A5 /* Debug */,
+				DAE827F71A2F083D009F16A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
