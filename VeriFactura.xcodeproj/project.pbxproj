@@ -18,7 +18,8 @@
 		DA1344531A280BAD00729BD2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344521A280BAD00729BD2 /* CoreGraphics.framework */; };
 		DA1344551A280BB600729BD2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344541A280BB600729BD2 /* UIKit.framework */; };
 		DA1344581A280C5800729BD2 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA1344571A280C5800729BD2 /* beep.mp3 */; };
-		DAC22ACD1A30305B0050CD44 /* invoice_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22ACC1A30305B0050CD44 /* invoice_btn.png */; };
+		DAC22AD31A3056610050CD44 /* InvoiceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22AD21A3056610050CD44 /* InvoiceIcon.png */; };
+		DAC22AD71A3059230050CD44 /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22AD61A3059230050CD44 /* Info.png */; };
 		DAE827F21A2F083D009F16A5 /* VeriFactura_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +50,8 @@
 		DA1344521A280BAD00729BD2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA1344541A280BB600729BD2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA1344571A280C5800729BD2 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
-		DAC22ACC1A30305B0050CD44 /* invoice_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invoice_btn.png; sourceTree = "<group>"; };
+		DAC22AD21A3056610050CD44 /* InvoiceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InvoiceIcon.png; sourceTree = "<group>"; };
+		DAC22AD61A3059230050CD44 /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
 		DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeriFactura Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE827F01A2F083D009F16A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeriFactura_Tests.m; sourceTree = "<group>"; };
@@ -115,7 +117,8 @@
 		DA1344261A26EE2B00729BD2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				DAC22ACC1A30305B0050CD44 /* invoice_btn.png */,
+				DAC22AD21A3056610050CD44 /* InvoiceIcon.png */,
+				DAC22AD61A3059230050CD44 /* Info.png */,
 				DA1344271A26EE2B00729BD2 /* Info.plist */,
 				DA1344281A26EE2B00729BD2 /* main.m */,
 			);
@@ -240,8 +243,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA1344321A26EE2B00729BD2 /* Main.storyboard in Resources */,
-				DAC22ACD1A30305B0050CD44 /* invoice_btn.png in Resources */,
+				DAC22AD71A3059230050CD44 /* Info.png in Resources */,
 				DA1344371A26EE2B00729BD2 /* LaunchScreen.xib in Resources */,
+				DAC22AD31A3056610050CD44 /* InvoiceIcon.png in Resources */,
 				DA1344581A280C5800729BD2 /* beep.mp3 in Resources */,
 				DA1344341A26EE2B00729BD2 /* Images.xcassets in Resources */,
 			);
@@ -388,7 +392,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = verificacion/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = VeriFactura;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -401,7 +405,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = verificacion/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = VeriFactura;
 				TARGETED_DEVICE_FAMILY = 1;

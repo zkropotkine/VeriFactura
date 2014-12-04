@@ -134,7 +134,8 @@
 }
 
 
--(void)stopReading{
+-(void)stopReading
+{
     // Stop video capture and make the capture session object nil.
     [_captureSession stopRunning];
     _captureSession = nil;
@@ -142,44 +143,54 @@
     // Remove the video preview layer from the viewPreview view's layer.
     [_videoPreviewLayer removeFromSuperlayer];
     
-    
-    if (validCDFI)
+    if (![cfdiData count] == 0)
     {
-        NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
-        NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-        
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
-        
-        
-        NSLog(@"String: %@", sSOAPMessage);
-        
-        NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
-        
-        [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
-        [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
-        [myRequest setHTTPMethod:@"POST"];
-        [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
-        
-        if( theConnection ) {
-            self.webResponseData = [NSMutableData data];
-
+        if (validCDFI)
+        {
+            NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
+            NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
             
-            //[_lblStatus setText:@"Factura Valida"];
-        }else {
-            NSLog(@"Some error occurred in Connection");
-            [self.lblStatus setText:@"Tenemos problemas validando esta factura, por favor intenta más tarde."];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
+            
+            
+            NSLog(@"String: %@", sSOAPMessage);
+            
+            NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
+            
+            [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
+            [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+            [myRequest setHTTPMethod:@"POST"];
+            [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+            
+            if (theConnection)
+            {
+                self.webResponseData = [NSMutableData data];
+            }
+            else
+            {
+                NSLog(@"Some error occurred in Connection");
+                [self.lblStatus setText:@"Tenemos problemas validando esta factura, por favor intenta más tarde."];
+                self.lblStatus.textColor = [UIColor redColor];
+            }
+        }
+        else
+        {
+            NSLog(@"This doesn't seems to be a bill");
+            [self.lblStatus setText:@"Esto no parece ser una factura."];
             self.lblStatus.textColor = [UIColor redColor];
         }
-    } else {
-        NSLog(@"This doesn't seems to be a bill");
-        [self.lblStatus setText:@"Esto no parece ser una factura."];
-        self.lblStatus.textColor = [UIColor redColor];
+    }
+    else
+    {
+        [self.lblStatus setText:@""];
+        self.lblStatus.textColor = [UIColor blueColor];
+    
     }
 }
 
