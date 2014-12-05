@@ -34,6 +34,7 @@
 
   NSMutableArray *cfdiData;
   bool validCDFI = true;
+  bool userStoppedVerification = true;
   NSMutableString *resultValue;
 
 - (void)viewDidLoad
@@ -188,10 +189,16 @@
     }
     else
     {
-        [self.lblStatus setText:@""];
-        self.lblStatus.textColor = [UIColor blueColor];
-    
+        if (userStoppedVerification) {
+            [self.lblStatus setText:@""];
+            self.lblStatus.textColor = [UIColor blueColor];
+        } else {
+            [self.lblStatus setText:@"Esto no parece ser una factura."];
+            self.lblStatus.textColor = [UIColor redColor];
+        }
     }
+    
+    userStoppedVerification = true;
 }
 
 
@@ -222,6 +229,8 @@
     
     // Check if the metadataObjects array is not nil and it contains at least one object.
     if (metadataObjects != nil && [metadataObjects count] > 0) {
+        userStoppedVerification = false;
+        
         // Get the metadata object.
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
@@ -287,7 +296,7 @@
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"Received Bytes from server: %d", [self.webResponseData length]);
     NSString *myXMLResponse = [[NSString alloc] initWithBytes: [self.webResponseData bytes] length:[self.webResponseData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",myXMLResponse);
+    NSLog(@"%@", myXMLResponse);
     
     NSData *data = [myXMLResponse dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -296,27 +305,15 @@
     [xmlstr parse];
 }
 
-/*
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI  qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
-    //NSLog(@"ENCONTRO E, %@",elementName );
-    //NSLog(@"ENCONTRO X, %@",attributeDict );
-}*/
-
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    //if(resultValue == nil)
-        
-        resultValue = [[NSMutableString
-                    alloc] init];
+    resultValue = [[NSMutableString alloc] init];
     
     [resultValue appendString:string];
-     //NSLog(@"ENCONTRO I, %@", string);
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    
     NSLog(@"Found an element named: %@ with a value of: %@", elementName, resultValue);
-     //NSLog(@"ENCONTRO <E, %@",elementName);
     
     if ([elementName isEqualToString:@"a:CodigoEstatus"]){
         //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
@@ -324,10 +321,22 @@
         //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
         // [_lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
         
-        [self.lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
-        self.lblStatus.textColor = [UIColor greenColor];
+        if (validCDFI) {
+            NSString *msg = [NSString stringWithFormat:@"Emisor: %@ Receptor: %@ \nMonto %@ La factura es %@",
+                           [cfdiData objectAtIndex:0],[cfdiData objectAtIndex:1],[cfdiData objectAtIndex:2], resultValue];
+            
+            msg = [msg stringByReplacingOccurrencesOfString:@"?re=" withString:@""];
+            msg = [msg stringByReplacingOccurrencesOfString:@"rr=" withString:@""];
+            msg = [msg stringByReplacingOccurrencesOfString:@"tt:" withString:@""];
+            
+            [self.lblStatus setText:msg];
+            self.lblStatus.textColor = [UIColor greenColor];
+        } /*else {
+            [self.lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
+            self.lblStatus.textColor = [UIColor redColor];
+        }*/
+           
     }
-    
 }
 
 
