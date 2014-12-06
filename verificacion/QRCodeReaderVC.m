@@ -34,6 +34,7 @@
 
   NSMutableArray *cfdiData;
   bool validCDFI = true;
+  bool userStoppedVerification = true;
   NSMutableString *resultValue;
 
 - (void)viewDidLoad
@@ -134,7 +135,8 @@
 }
 
 
--(void)stopReading{
+-(void)stopReading
+{
     // Stop video capture and make the capture session object nil.
     [_captureSession stopRunning];
     _captureSession = nil;
@@ -142,45 +144,61 @@
     // Remove the video preview layer from the viewPreview view's layer.
     [_videoPreviewLayer removeFromSuperlayer];
     
-    
-    if (validCDFI)
+    if (![cfdiData count] == 0)
     {
-        NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
-        NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-        
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
-        sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
-        
-        
-        NSLog(@"String: %@", sSOAPMessage);
-        
-        NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
-        
-        [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
-        [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
-        [myRequest setHTTPMethod:@"POST"];
-        [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
-        
-        if( theConnection ) {
-            self.webResponseData = [NSMutableData data];
-
+        if (validCDFI)
+        {
+            NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
+            NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
             
-            //[_lblStatus setText:@"Factura Valida"];
-        }else {
-            NSLog(@"Some error occurred in Connection");
-            [self.lblStatus setText:@"Tenemos problemas validando esta factura, por favor intenta más tarde."];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
+            
+            
+            NSLog(@"String: %@", sSOAPMessage);
+            
+            NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
+            
+            [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
+            [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
+            [myRequest setHTTPMethod:@"POST"];
+            [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
+            
+            if (theConnection)
+            {
+                self.webResponseData = [NSMutableData data];
+            }
+            else
+            {
+                NSLog(@"Some error occurred in Connection");
+                [self.lblStatus setText:@"Tenemos problemas validando esta factura, por favor intenta más tarde."];
+                self.lblStatus.textColor = [UIColor redColor];
+            }
+        }
+        else
+        {
+            NSLog(@"This doesn't seems to be a bill");
+            [self.lblStatus setText:@"Esto no parece ser una factura."];
             self.lblStatus.textColor = [UIColor redColor];
         }
-    } else {
-        NSLog(@"This doesn't seems to be a bill");
-        [self.lblStatus setText:@"Esto no parece ser una factura."];
-        self.lblStatus.textColor = [UIColor redColor];
     }
+    else
+    {
+        if (userStoppedVerification) {
+            [self.lblStatus setText:@""];
+            self.lblStatus.textColor = [UIColor blueColor];
+        } else {
+            [self.lblStatus setText:@"Esto no parece ser una factura."];
+            self.lblStatus.textColor = [UIColor redColor];
+        }
+    }
+    
+    userStoppedVerification = true;
 }
 
 
@@ -211,6 +229,8 @@
     
     // Check if the metadataObjects array is not nil and it contains at least one object.
     if (metadataObjects != nil && [metadataObjects count] > 0) {
+        userStoppedVerification = false;
+        
         // Get the metadata object.
         AVMetadataMachineReadableCodeObject *metadataObj = [metadataObjects objectAtIndex:0];
         if ([[metadataObj type] isEqualToString:AVMetadataObjectTypeQRCode]) {
@@ -250,6 +270,8 @@
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Verificar!" waitUntilDone:NO];
+            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:@"Contactando a la SHCP, por favor espera." waitUntilDone:NO];
+            [_lblStatus performSelectorOnMainThread:@selector(setTextColor:) withObject:[UIColor blueColor] waitUntilDone:NO];
             
             _isReading = NO;
             
@@ -271,12 +293,18 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Some error in your Connection. Please try again.");
+    
+    [self.lblStatus setText:@"Hay algun problema con tu conexión a internet o con el servidor de la SHCP, intenta más tarde"];
+    self.lblStatus.textColor = [UIColor redColor];
+    
+    [connection cancel];
+    connection = nil;
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSLog(@"Received Bytes from server: %d", [self.webResponseData length]);
     NSString *myXMLResponse = [[NSString alloc] initWithBytes: [self.webResponseData bytes] length:[self.webResponseData length] encoding:NSUTF8StringEncoding];
-    NSLog(@"%@",myXMLResponse);
+    NSLog(@"%@", myXMLResponse);
     
     NSData *data = [myXMLResponse dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -285,27 +313,15 @@
     [xmlstr parse];
 }
 
-/*
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI  qualifiedName:(NSString *)qualifiedName attributes:(NSDictionary *)attributeDict {
-    //NSLog(@"ENCONTRO E, %@",elementName );
-    //NSLog(@"ENCONTRO X, %@",attributeDict );
-}*/
-
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    //if(resultValue == nil)
-        
-        resultValue = [[NSMutableString
-                    alloc] init];
+    resultValue = [[NSMutableString alloc] init];
     
     [resultValue appendString:string];
-     //NSLog(@"ENCONTRO I, %@", string);
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
-    
     NSLog(@"Found an element named: %@ with a value of: %@", elementName, resultValue);
-     //NSLog(@"ENCONTRO <E, %@",elementName);
     
     if ([elementName isEqualToString:@"a:CodigoEstatus"]){
         //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
@@ -313,10 +329,22 @@
         //[resultValue appendString:[NSString stringWithFormat:@"%@ La factura es: ", resultValue]];
         // [_lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
         
-        [self.lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
-        self.lblStatus.textColor = [UIColor greenColor];
+        if (validCDFI) {
+            NSString *msg = [NSString stringWithFormat:@"Emisor: %@ \nReceptor: %@ \nMonto: %@ \nLa factura es: %@",
+                           [cfdiData objectAtIndex:0],[cfdiData objectAtIndex:1],[cfdiData objectAtIndex:2], resultValue];
+            
+            msg = [msg stringByReplacingOccurrencesOfString:@"?re=" withString:@""];
+            msg = [msg stringByReplacingOccurrencesOfString:@"rr=" withString:@""];
+            msg = [msg stringByReplacingOccurrencesOfString:@"tt=" withString:@""];
+            
+            [self.lblStatus setText:msg];
+            self.lblStatus.textColor = [UIColor greenColor];
+        } /*else {
+            [self.lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
+            self.lblStatus.textColor = [UIColor redColor];
+        }*/
+           
     }
-    
 }
 
 
