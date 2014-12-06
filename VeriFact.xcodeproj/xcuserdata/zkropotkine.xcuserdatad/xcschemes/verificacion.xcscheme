@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-               BuildableName = "VeriFactura.app"
-               BlueprintName = "VeriFactura"
-               ReferencedContainer = "container:VeriFactura.xcodeproj">
+               BuildableName = "VeriFact.app"
+               BlueprintName = "VeriFact"
+               ReferencedContainer = "container:VeriFact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "DA13443B1A26EE2B00729BD2"
                BuildableName = "VerificaFacturaTests.xctest"
                BlueprintName = "VerificaFacturaTests"
-               ReferencedContainer = "container:VeriFactura.xcodeproj">
+               ReferencedContainer = "container:VeriFact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAE827EC1A2F083D009F16A5"
-               BuildableName = "VeriFactura Tests.xctest"
-               BlueprintName = "VeriFactura Tests"
-               ReferencedContainer = "container:VeriFactura.xcodeproj">
+               BuildableName = "VeriFact Tests.xctest"
+               BlueprintName = "VeriFact Tests"
+               ReferencedContainer = "container:VeriFact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,7 +63,7 @@
                BlueprintIdentifier = "DA13443B1A26EE2B00729BD2"
                BuildableName = "VerificaFacturaTests.xctest"
                BlueprintName = "VerificaFacturaTests"
-               ReferencedContainer = "container:VeriFactura.xcodeproj">
+               ReferencedContainer = "container:VeriFact.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -71,9 +71,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DAE827EC1A2F083D009F16A5"
-               BuildableName = "VeriFactura Tests.xctest"
-               BlueprintName = "VeriFactura Tests"
-               ReferencedContainer = "container:VeriFactura.xcodeproj">
+               BuildableName = "VeriFact Tests.xctest"
+               BlueprintName = "VeriFact Tests"
+               ReferencedContainer = "container:VeriFact.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -81,9 +81,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "VeriFactura.app"
-            BlueprintName = "VeriFactura"
-            ReferencedContainer = "container:VeriFactura.xcodeproj">
+            BuildableName = "VeriFact.app"
+            BlueprintName = "VeriFact"
+            ReferencedContainer = "container:VeriFact.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -100,9 +100,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "VeriFactura.app"
-            BlueprintName = "VeriFactura"
-            ReferencedContainer = "container:VeriFactura.xcodeproj">
+            BuildableName = "VeriFact.app"
+            BlueprintName = "VeriFact"
+            ReferencedContainer = "container:VeriFact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -118,9 +118,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DA1344221A26EE2B00729BD2"
-            BuildableName = "VeriFactura.app"
-            BlueprintName = "VeriFactura"
-            ReferencedContainer = "container:VeriFactura.xcodeproj">
+            BuildableName = "VeriFact.app"
+            BlueprintName = "VeriFact"
+            ReferencedContainer = "container:VeriFact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

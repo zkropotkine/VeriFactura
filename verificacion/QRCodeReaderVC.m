@@ -270,6 +270,8 @@
             
             [self performSelectorOnMainThread:@selector(stopReading) withObject:nil waitUntilDone:NO];
             [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Verificar!" waitUntilDone:NO];
+            [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:@"Contactando a la SHCP, por favor espera." waitUntilDone:NO];
+            [_lblStatus performSelectorOnMainThread:@selector(setTextColor:) withObject:[UIColor blueColor] waitUntilDone:NO];
             
             _isReading = NO;
             
@@ -291,6 +293,12 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"Some error in your Connection. Please try again.");
+    
+    [self.lblStatus setText:@"Hay algun problema con tu conexión a internet o con el servidor de la SHCP, intenta más tarde"];
+    self.lblStatus.textColor = [UIColor redColor];
+    
+    [connection cancel];
+    connection = nil;
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -322,12 +330,12 @@
         // [_lblStatus setText:[NSString stringWithFormat:@"La factura es: %@ ", resultValue]];
         
         if (validCDFI) {
-            NSString *msg = [NSString stringWithFormat:@"Emisor: %@ Receptor: %@ \nMonto %@ La factura es %@",
+            NSString *msg = [NSString stringWithFormat:@"Emisor: %@ \nReceptor: %@ \nMonto: %@ \nLa factura es: %@",
                            [cfdiData objectAtIndex:0],[cfdiData objectAtIndex:1],[cfdiData objectAtIndex:2], resultValue];
             
             msg = [msg stringByReplacingOccurrencesOfString:@"?re=" withString:@""];
             msg = [msg stringByReplacingOccurrencesOfString:@"rr=" withString:@""];
-            msg = [msg stringByReplacingOccurrencesOfString:@"tt:" withString:@""];
+            msg = [msg stringByReplacingOccurrencesOfString:@"tt=" withString:@""];
             
             [self.lblStatus setText:msg];
             self.lblStatus.textColor = [UIColor greenColor];

@@ -18,23 +18,24 @@
 		DA1344531A280BAD00729BD2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344521A280BAD00729BD2 /* CoreGraphics.framework */; };
 		DA1344551A280BB600729BD2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA1344541A280BB600729BD2 /* UIKit.framework */; };
 		DA1344581A280C5800729BD2 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = DA1344571A280C5800729BD2 /* beep.mp3 */; };
+		DA7E11C61A32CC8B005F4737 /* VeriFact_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7E11C51A32CC8B005F4737 /* VeriFact_Tests.m */; };
 		DAC22AD31A3056610050CD44 /* InvoiceIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22AD21A3056610050CD44 /* InvoiceIcon.png */; };
 		DAC22AD71A3059230050CD44 /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = DAC22AD61A3059230050CD44 /* Info.png */; };
-		DAE827F21A2F083D009F16A5 /* VeriFactura_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */; };
+		DAC326DC1A31814A001A00D7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAC326DB1A31814A001A00D7 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DAE827F31A2F083D009F16A5 /* PBXContainerItemProxy */ = {
+		DA7E11C71A32CC8B005F4737 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DA13441B1A26EE2B00729BD2 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DA1344221A26EE2B00729BD2;
-			remoteInfo = VeriFactura;
+			remoteInfo = VeriFact;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA1344231A26EE2B00729BD2 /* VeriFactura.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeriFactura.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA1344231A26EE2B00729BD2 /* VeriFact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeriFact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA1344271A26EE2B00729BD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA1344281A26EE2B00729BD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DA13442A1A26EE2B00729BD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -50,9 +51,12 @@
 		DA1344521A280BAD00729BD2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		DA1344541A280BB600729BD2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DA1344571A280C5800729BD2 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
+		DA7E11C11A32CC8A005F4737 /* VeriFact Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeriFact Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA7E11C41A32CC8B005F4737 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA7E11C51A32CC8B005F4737 /* VeriFact_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeriFact_Tests.m; sourceTree = "<group>"; };
 		DAC22AD21A3056610050CD44 /* InvoiceIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InvoiceIcon.png; sourceTree = "<group>"; };
 		DAC22AD61A3059230050CD44 /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
-		DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VeriFactura Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DAC326DB1A31814A001A00D7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DAE827F01A2F083D009F16A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAE827F11A2F083D009F16A5 /* VeriFactura_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VeriFactura_Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,13 +66,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAC326DC1A31814A001A00D7 /* SystemConfiguration.framework in Frameworks */,
 				DA1344551A280BB600729BD2 /* UIKit.framework in Frameworks */,
 				DA1344531A280BAD00729BD2 /* CoreGraphics.framework in Frameworks */,
 				DA1344511A280BA500729BD2 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAE827EA1A2F083D009F16A5 /* Frameworks */ = {
+		DA7E11BE1A32CC8A005F4737 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -83,6 +88,7 @@
 			children = (
 				DA1344251A26EE2B00729BD2 /* verificacion */,
 				DAE827EE1A2F083D009F16A5 /* VeriFactura Tests */,
+				DA7E11C21A32CC8B005F4737 /* VeriFact Tests */,
 				DA1344561A280BC100729BD2 /* Frameworks */,
 				DA1344241A26EE2B00729BD2 /* Products */,
 			);
@@ -91,8 +97,8 @@
 		DA1344241A26EE2B00729BD2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DA1344231A26EE2B00729BD2 /* VeriFactura.app */,
-				DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */,
+				DA1344231A26EE2B00729BD2 /* VeriFact.app */,
+				DA7E11C11A32CC8A005F4737 /* VeriFact Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -137,11 +143,29 @@
 		DA1344561A280BC100729BD2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DAC326DB1A31814A001A00D7 /* SystemConfiguration.framework */,
 				DA1344541A280BB600729BD2 /* UIKit.framework */,
 				DA1344521A280BAD00729BD2 /* CoreGraphics.framework */,
 				DA1344501A280BA500729BD2 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA7E11C21A32CC8B005F4737 /* VeriFact Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DA7E11C51A32CC8B005F4737 /* VeriFact_Tests.m */,
+				DA7E11C31A32CC8B005F4737 /* Supporting Files */,
+			);
+			path = "VeriFact Tests";
+			sourceTree = "<group>";
+		};
+		DA7E11C31A32CC8B005F4737 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA7E11C41A32CC8B005F4737 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		DAE827EE1A2F083D009F16A5 /* VeriFactura Tests */ = {
@@ -164,9 +188,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DA1344221A26EE2B00729BD2 /* VeriFactura */ = {
+		DA1344221A26EE2B00729BD2 /* VeriFact */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFactura" */;
+			buildConfigurationList = DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFact" */;
 			buildPhases = (
 				DA13441F1A26EE2B00729BD2 /* Sources */,
 				DA1344201A26EE2B00729BD2 /* Frameworks */,
@@ -176,27 +200,27 @@
 			);
 			dependencies = (
 			);
-			name = VeriFactura;
+			name = VeriFact;
 			productName = verificacion;
-			productReference = DA1344231A26EE2B00729BD2 /* VeriFactura.app */;
+			productReference = DA1344231A26EE2B00729BD2 /* VeriFact.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DAE827EC1A2F083D009F16A5 /* VeriFactura Tests */ = {
+		DA7E11C01A32CC8A005F4737 /* VeriFact Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DAE827F51A2F083D009F16A5 /* Build configuration list for PBXNativeTarget "VeriFactura Tests" */;
+			buildConfigurationList = DA7E11C91A32CC8B005F4737 /* Build configuration list for PBXNativeTarget "VeriFact Tests" */;
 			buildPhases = (
-				DAE827E91A2F083D009F16A5 /* Sources */,
-				DAE827EA1A2F083D009F16A5 /* Frameworks */,
-				DAE827EB1A2F083D009F16A5 /* Resources */,
+				DA7E11BD1A32CC8A005F4737 /* Sources */,
+				DA7E11BE1A32CC8A005F4737 /* Frameworks */,
+				DA7E11BF1A32CC8A005F4737 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DAE827F41A2F083D009F16A5 /* PBXTargetDependency */,
+				DA7E11C81A32CC8B005F4737 /* PBXTargetDependency */,
 			);
-			name = "VeriFactura Tests";
-			productName = "VeriFactura Tests";
-			productReference = DAE827ED1A2F083D009F16A5 /* VeriFactura Tests.xctest */;
+			name = "VeriFact Tests";
+			productName = "VeriFact Tests";
+			productReference = DA7E11C11A32CC8A005F4737 /* VeriFact Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -210,15 +234,15 @@
 				TargetAttributes = {
 					DA1344221A26EE2B00729BD2 = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = QXF33N93KH;
+						DevelopmentTeam = YEG548UG49;
 					};
-					DAE827EC1A2F083D009F16A5 = {
+					DA7E11C01A32CC8A005F4737 = {
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = DA1344221A26EE2B00729BD2;
 					};
 				};
 			};
-			buildConfigurationList = DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFactura" */;
+			buildConfigurationList = DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFact" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -231,8 +255,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DA1344221A26EE2B00729BD2 /* VeriFactura */,
-				DAE827EC1A2F083D009F16A5 /* VeriFactura Tests */,
+				DA1344221A26EE2B00729BD2 /* VeriFact */,
+				DA7E11C01A32CC8A005F4737 /* VeriFact Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,7 +275,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAE827EB1A2F083D009F16A5 /* Resources */ = {
+		DA7E11BF1A32CC8A005F4737 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -272,21 +296,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAE827E91A2F083D009F16A5 /* Sources */ = {
+		DA7E11BD1A32CC8A005F4737 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAE827F21A2F083D009F16A5 /* VeriFactura_Tests.m in Sources */,
+				DA7E11C61A32CC8B005F4737 /* VeriFact_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DAE827F41A2F083D009F16A5 /* PBXTargetDependency */ = {
+		DA7E11C81A32CC8B005F4737 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DA1344221A26EE2B00729BD2 /* VeriFactura */;
-			targetProxy = DAE827F31A2F083D009F16A5 /* PBXContainerItemProxy */;
+			target = DA1344221A26EE2B00729BD2 /* VeriFact */;
+			targetProxy = DA7E11C71A32CC8B005F4737 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -390,13 +414,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = verificacion/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = VeriFactura;
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = VeriFact;
+				PROVISIONING_PROFILE = "124b804b-6121-4524-b426-f89a554fb98f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -405,18 +430,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = verificacion/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = VeriFactura;
-				PROVISIONING_PROFILE = "";
+				PRODUCT_NAME = VeriFact;
+				PROVISIONING_PROFILE = "124b804b-6121-4524-b426-f89a554fb98f";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "124b804b-6121-4524-b426-f89a554fb98f";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
-		DAE827F61A2F083D009F16A5 /* Debug */ = {
+		DA7E11CA1A32CC8B005F4737 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -428,14 +456,14 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "VeriFactura Tests/Info.plist";
+				INFOPLIST_FILE = "VeriFact Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFactura.app/VeriFactura";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFact.app/VeriFact";
 			};
 			name = Debug;
 		};
-		DAE827F71A2F083D009F16A5 /* Release */ = {
+		DA7E11CB1A32CC8B005F4737 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -443,17 +471,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "VeriFactura Tests/Info.plist";
+				INFOPLIST_FILE = "VeriFact Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFactura.app/VeriFactura";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VeriFact.app/VeriFact";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFactura" */ = {
+		DA13441E1A26EE2B00729BD2 /* Build configuration list for PBXProject "VeriFact" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA1344441A26EE2B00729BD2 /* Debug */,
@@ -462,7 +490,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFactura" */ = {
+		DA1344461A26EE2B00729BD2 /* Build configuration list for PBXNativeTarget "VeriFact" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA1344471A26EE2B00729BD2 /* Debug */,
@@ -471,14 +499,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DAE827F51A2F083D009F16A5 /* Build configuration list for PBXNativeTarget "VeriFactura Tests" */ = {
+		DA7E11C91A32CC8B005F4737 /* Build configuration list for PBXNativeTarget "VeriFact Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DAE827F61A2F083D009F16A5 /* Debug */,
-				DAE827F71A2F083D009F16A5 /* Release */,
+				DA7E11CA1A32CC8B005F4737 /* Debug */,
+				DA7E11CB1A32CC8B005F4737 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
