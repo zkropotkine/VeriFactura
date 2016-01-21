@@ -17,13 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nT6-Ra-rXj">
+                            <view clipsSubviews="YES" alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nT6-Ra-rXj">
                                 <rect key="frame" x="20" y="59" width="560" height="391"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYn-Dt-D97">
-                                        <rect key="frame" x="8" y="8" width="544" height="375"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYn-Dt-D97">
+                                        <rect key="frame" x="0.0" y="8" width="560" height="391"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3f5-TZ-Acn">
+                                                <rect key="frame" x="16" y="16" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -33,13 +34,13 @@
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="bottom" secondItem="nT6-Ra-rXj" secondAttribute="bottomMargin" id="Ksc-rH-ohH"/>
-                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="trailing" secondItem="nT6-Ra-rXj" secondAttribute="trailingMargin" id="Sag-1d-T3H"/>
-                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="leading" secondItem="nT6-Ra-rXj" secondAttribute="leadingMargin" id="XAd-XL-6pn"/>
-                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="top" secondItem="nT6-Ra-rXj" secondAttribute="topMargin" id="iOQ-dl-GrD"/>
+                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="bottom" secondItem="nT6-Ra-rXj" secondAttribute="bottomMargin" constant="8" id="Ksc-rH-ohH"/>
+                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="trailing" secondItem="nT6-Ra-rXj" secondAttribute="trailingMargin" constant="8" id="Sag-1d-T3H"/>
+                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="leading" secondItem="nT6-Ra-rXj" secondAttribute="leadingMargin" constant="-8" id="XAd-XL-6pn"/>
+                                    <constraint firstItem="BYn-Dt-D97" firstAttribute="top" secondItem="nT6-Ra-rXj" secondAttribute="topMargin" constant="-8" id="iOQ-dl-GrD"/>
                                 </constraints>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fV7-S8-b5D">
@@ -105,6 +106,7 @@
                     </view>
                     <connections>
                         <outlet property="bbitemStart" destination="HeM-Of-hTO" id="HKA-IJ-LTP"/>
+                        <outlet property="externalView" destination="nT6-Ra-rXj" id="Vgz-iu-6v5"/>
                         <outlet property="lblStatus" destination="ZHY-7D-ml2" id="mYg-kP-823"/>
                         <outlet property="viewPreview" destination="BYn-Dt-D97" id="L2X-Zc-Xvd"/>
                     </connections>

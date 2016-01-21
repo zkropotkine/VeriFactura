@@ -54,6 +54,17 @@ NSString *serverIp = @"http://192.168.1.125:8080";
     // Set the initial value of the flag to NO.
     _isReading = NO;
     
+
+    
+    self.externalView.layer.cornerRadius = self.externalView.frame.size.width / 16;
+    self.externalView.clipsToBounds = YES;
+    
+    
+    
+    self.externalView.layer.borderWidth = 3.0f;
+    self.externalView.layer.borderColor = [UIColor colorWithRed:(77/255.0) green:(77/255.0) blue:(255/255.0) alpha:1].CGColor;
+    
+    
     // Begin loading the sound effect so to have it ready for playback when it's needed.
     [self loadBeepSound];
     
