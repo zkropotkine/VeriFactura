@@ -35,6 +35,8 @@
 
 NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Header/><S:Body><ns2:checkTag xmlns:ns2=\"http://ws.autofagasta.com/\"><tagInfo>%RE</tagInfo></ns2:checkTag></S:Body></S:Envelope>";
 
+NSString *serverIp = @"http://192.168.1.125:8080";
+
   NSMutableArray *cfdiData;
   bool validCDFI = true;
   bool userStoppedVerification = true;
@@ -153,7 +155,10 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><S:Envelope
         if (validCDFI)
         {
            // NSURL *sRequestURL = [NSURL URLWithString:@"https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc?singleWsdl"];
-            NSURL *sRequestURL = [NSURL URLWithString:@"http://192.168.100.8:8080/ProjectXWeb/ProjectXWS?wsdl"];
+            
+            NSString *fullWSAddress = [serverIp stringByAppendingString:@"/ProjectXWeb/ProjectXWS?wsdl"];
+            
+            NSURL *sRequestURL = [NSURL URLWithString:fullWSAddress];
             
             
             NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
@@ -166,12 +171,13 @@ NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><S:Envelope
             
             NSLog(@"String: %@", sSOAPMessage);
             
-            NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
+            NSString *sMessageLength = [NSString stringWithFormat:@"%lu", [sSOAPMessage length]];
+            NSString *soapAction = [serverIp stringByAppendingString:@"/ProjectXWeb/CheckTag/checkTagRequest"];
             
             [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
            // [myRequest addValue: @"http://tempuri.org/IConsultaCFDIService/Consulta" forHTTPHeaderField:@"SOAPAction"];
             
-            [myRequest addValue: @"http://192.168.100.8/ProjectXWeb/CheckTag/checkTagRequest" forHTTPHeaderField:@"SOAPAction"];
+            [myRequest addValue: soapAction forHTTPHeaderField:@"SOAPAction"];
             [myRequest addValue: sMessageLength forHTTPHeaderField:@"Content-Length"];
             [myRequest setHTTPMethod:@"POST"];
             [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
