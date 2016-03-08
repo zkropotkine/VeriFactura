@@ -7,7 +7,7 @@
 //
 
 #import "QRCodeReaderVC.h"
-#define CFDI_ELEMENTS_NUMBERS 4
+#define CFDI_ELEMENTS_NUMBERS 1
 
 @interface QRCodeReaderVC ()
 @property (nonatomic, strong) AVCaptureSession *captureSession;
@@ -35,7 +35,7 @@
 
 NSString *sSOAPMessage = @"<?xml version=\"1.0\" encoding=\"UTF-8\"?><S:Envelope xmlns:S=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\"><SOAP-ENV:Header/><S:Body><ns2:checkTag xmlns:ns2=\"http://ws.autofagasta.com/\"><tagInfo>%RE</tagInfo></ns2:checkTag></S:Body></S:Envelope>";
 
-NSString *serverIp = @"http://192.168.1.125:8080";
+NSString *serverIp = @"http://192.168.100.14:8080";
 
   NSMutableArray *cfdiData;
   bool validCDFI = true;
@@ -62,7 +62,7 @@ NSString *serverIp = @"http://192.168.1.125:8080";
     
     
     self.externalView.layer.borderWidth = 3.0f;
-    self.externalView.layer.borderColor = [UIColor colorWithRed:(77/255.0) green:(77/255.0) blue:(255/255.0) alpha:1].CGColor;
+    self.externalView.layer.borderColor = [UIColor colorWithRed:(51/255.0) green:(153/255.0) blue:(255/255.0) alpha:1].CGColor;
     
     
     // Begin loading the sound effect so to have it ready for playback when it's needed.
@@ -88,7 +88,7 @@ NSString *serverIp = @"http://192.168.1.125:8080";
             // running, then change the start button title and the status message.
             [_bbitemStart setTitle:@"Parar"];
             [self.lblStatus setText:@"Escaneando Codigo"];
-             self.lblStatus.textColor = [UIColor blueColor];
+             self.lblStatus.textColor = [UIColor colorWithRed:(51/255.0) green:(153/255.0) blue:(255/255.0) alpha:1];
         }
     }
     else{
@@ -170,11 +170,11 @@ NSString *serverIp = @"http://192.168.1.125:8080";
             NSString *fullWSAddress = [serverIp stringByAppendingString:@"/ProjectXWeb/ProjectXWS?wsdl"];
             
             NSURL *sRequestURL = [NSURL URLWithString:fullWSAddress];
-            
+           // NSLog(@"String: %@", cfdiData);
             
             NSMutableURLRequest *myRequest = [NSMutableURLRequest requestWithURL:sRequestURL];
-            
-            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:@"1001"];
+           // NSLog(@"r: %@", [cfdiData objectAtIndex:0]);
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RE" withString:[cfdiData objectAtIndex:0]];
             //sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%RR" withString:[cfdiData objectAtIndex:1]];
             //sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%TT" withString:[cfdiData objectAtIndex:2]];
             //sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:@"%ID" withString:[cfdiData objectAtIndex:3]];
@@ -182,7 +182,7 @@ NSString *serverIp = @"http://192.168.1.125:8080";
             
             NSLog(@"String: %@", sSOAPMessage);
             
-            NSString *sMessageLength = [NSString stringWithFormat:@"%lu", [sSOAPMessage length]];
+            NSString *sMessageLength = [NSString stringWithFormat:@"%d", [sSOAPMessage length]];
             NSString *soapAction = [serverIp stringByAppendingString:@"/ProjectXWeb/CheckTag/checkTagRequest"];
             
             [myRequest addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -193,10 +193,15 @@ NSString *serverIp = @"http://192.168.1.125:8080";
             [myRequest setHTTPMethod:@"POST"];
             [myRequest setHTTPBody: [sSOAPMessage dataUsingEncoding:NSUTF8StringEncoding]];
             
+            
+            
             NSURLConnection *theConnection = [[NSURLConnection alloc] initWithRequest:myRequest delegate:self];
             
-            NSLog(@"String: %@", myRequest);
+           // NSLog(@"String: %@", myRequest);
 
+            
+            sSOAPMessage = [sSOAPMessage stringByReplacingOccurrencesOfString:[cfdiData objectAtIndex:0] withString: @"%RE"];
+            NSLog(@"WOW: %@", sSOAPMessage);
             
             if (theConnection)
             {
@@ -280,11 +285,11 @@ NSString *serverIp = @"http://192.168.1.125:8080";
             NSString* Identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString]; // IOS 6+
             NSLog(@"output is : %@", Identifier);
             
-            NSArray *cfdiElements = [NSArray arrayWithObjects:@"?re=",@"rr=",@"tt=", @"id=",nil];
+            //NSArray *cfdiElements = [NSArray arrayWithObjects:@"?re=",@"rr=",@"tt=", @"id=",nil];
             
-            int i = 0;
+            //int i = 0;
             validCDFI = true;
-            for (id cfdiElement in cfdiElements)
+           /* for (id cfdiElement in cfdiElements)
             {
                 id myWord = [myWords objectAtIndex:i];
                 
@@ -298,7 +303,12 @@ NSString *serverIp = @"http://192.168.1.125:8080";
                 }
                 
                 i++;
-            }
+            }*/
+             cfdiData = [[NSMutableArray alloc] initWithCapacity:CFDI_ELEMENTS_NUMBERS];
+            [cfdiData addObject:myString];
+  NSLog(@"a is : %@", cfdiData);
+            
+            validCDFI = true;
             [_bbitemStart performSelectorOnMainThread:@selector(setTitle:) withObject:@"Verificar!" waitUntilDone:YES];
             //[_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:@"Contactando al servidor, por favor espera." waitUntilDone:YES];
             [_lblStatus performSelectorOnMainThread:@selector(setText:) withObject:myString waitUntilDone:YES];
